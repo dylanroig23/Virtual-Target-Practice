@@ -14,7 +14,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         private void Awake()
         {
             inputScheme = new PlayerInputActions();
-            movementController.Initialize(inputScheme.Player.Movement);
+            movementController.Initialize(inputScheme.Player.Movement, inputScheme.Player.DeltaMouse);
 
         }
 
