@@ -15,7 +15,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         {
             inputScheme = new PlayerInputActions();
             movementController.Initialize(inputScheme.Player.Movement, inputScheme.Player.DeltaMouse);
-
+         
         }
 
         private void OnEnable()

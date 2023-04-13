@@ -19,6 +19,11 @@ namespace RoigDylan_VukovicCharlie.Lab6
         private float playerSpeed = 5f;
         Vector2 mouseRotation; //the mouse movement that corresponds to the rotation
 
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         public void Initialize(InputAction moveAction, InputAction deltaMouseAction)
         {
             moveAction.Enable();
