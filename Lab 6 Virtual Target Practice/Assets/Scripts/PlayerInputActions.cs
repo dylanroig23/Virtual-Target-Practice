@@ -46,6 +46,15 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FPS"",
+                    ""type"": ""Value"",
+                    ""id"": ""fe254b66-7ad1-4f2a-8caa-da26efacea36"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -169,6 +178,28 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""action"": ""DeltaMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""id"": ""93e625f6-d0b4-429f-bbe6-b8f834f4ceb9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FPS"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6b90fb02-54ad-432f-9e44-751e62f2a200"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FPS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -179,6 +210,7 @@ namespace RoigDylan_VukovicCharlie.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
             m_Player_DeltaMouse = m_Player.FindAction("DeltaMouse", throwIfNotFound: true);
+            m_Player_FPS = m_Player.FindAction("FPS", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -242,12 +274,14 @@ namespace RoigDylan_VukovicCharlie.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Movement;
         private readonly InputAction m_Player_DeltaMouse;
+        private readonly InputAction m_Player_FPS;
         public struct PlayerActions
         {
             private @PlayerInputActions m_Wrapper;
             public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Player_Movement;
             public InputAction @DeltaMouse => m_Wrapper.m_Player_DeltaMouse;
+            public InputAction @FPS => m_Wrapper.m_Player_FPS;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -263,6 +297,9 @@ namespace RoigDylan_VukovicCharlie.Input
                 @DeltaMouse.started += instance.OnDeltaMouse;
                 @DeltaMouse.performed += instance.OnDeltaMouse;
                 @DeltaMouse.canceled += instance.OnDeltaMouse;
+                @FPS.started += instance.OnFPS;
+                @FPS.performed += instance.OnFPS;
+                @FPS.canceled += instance.OnFPS;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -273,6 +310,9 @@ namespace RoigDylan_VukovicCharlie.Input
                 @DeltaMouse.started -= instance.OnDeltaMouse;
                 @DeltaMouse.performed -= instance.OnDeltaMouse;
                 @DeltaMouse.canceled -= instance.OnDeltaMouse;
+                @FPS.started -= instance.OnFPS;
+                @FPS.performed -= instance.OnFPS;
+                @FPS.canceled -= instance.OnFPS;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -294,6 +334,7 @@ namespace RoigDylan_VukovicCharlie.Input
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnDeltaMouse(InputAction.CallbackContext context);
+            void OnFPS(InputAction.CallbackContext context);
         }
     }
 }

@@ -9,13 +9,14 @@ namespace RoigDylan_VukovicCharlie.Lab6
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private MovementControl movementController;
+        [SerializeField] private FirstPersonShooter firstPersonShooter;
         private PlayerInputActions inputScheme;
 
         private void Awake()
         {
             inputScheme = new PlayerInputActions();
             movementController.Initialize(inputScheme.Player.Movement, inputScheme.Player.DeltaMouse);
-         
+            firstPersonShooter.Initialize(inputScheme.Player.FPS);
         }
 
         private void OnEnable()

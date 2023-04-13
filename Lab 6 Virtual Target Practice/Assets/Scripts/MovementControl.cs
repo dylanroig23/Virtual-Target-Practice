@@ -61,6 +61,15 @@ namespace RoigDylan_VukovicCharlie.Lab6
             var objectStep = playerSpeed * Time.deltaTime;
             Vector3 currentPosition = playerToMove.transform.position;
             playerToMove.transform.position = Vector3.MoveTowards(currentPosition, currentPosition + movement, objectStep); 
+
+            // Ensure the character always faces forward
+            Vector3 targetDirection = cameraDirectionForward; // The direction character should face
+            targetDirection.y = 0; // Remove the vertical component to only rotate horizontally
+            if (targetDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                playerToMove.transform.rotation = Quaternion.RotateTowards(playerToMove.transform.rotation, targetRotation, Mathf.Infinity);
+            }
         }
     }
 }
