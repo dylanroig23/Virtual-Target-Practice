@@ -5,6 +5,7 @@ using RoigDylan_VukovicCharlie.Input;
 using RoigDylan_VukovicCharlie.Lab6;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 namespace RoigDylan_VukovicCharlie.Lab6
 {
@@ -19,7 +20,19 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public float projectileSpeed = 30f;
         private float timeToShoot;
         public float fireRate = 1f;
+        public int numOfTargetsHit;
+        public Text score;
 
+
+
+        /* 
+         things to add:
+            - weapon switching?
+            - more levels?
+            - moving targets?
+            - enemies?
+            - jump and sprint to character?s
+        */
 
         public void Initialize(InputAction shootAction)
         {
@@ -40,6 +53,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
                 timeToShoot = Time.time + 1/fireRate;
                 ShootProjectile();
             }
+            score.text = numOfTargetsHit.ToString();
         }
 
         void ShootProjectile()
@@ -48,12 +62,10 @@ namespace RoigDylan_VukovicCharlie.Lab6
             RaycastHit hit; 
             if(Physics.Raycast(ray, out hit)){ // if our ray hits any collider
                 whereProjectileHit = hit.point;
-                Debug.Log("hit point" + hit.point);
+                //Debug.Log("hit point" + hit.point);
             } else{
-                Debug.Log("else");
                 whereProjectileHit = ray.GetPoint(1000); // if nothing is hit, get the point 1000 out 
             }
-
             SpawnProjectile(shotFrom);
         }
 
