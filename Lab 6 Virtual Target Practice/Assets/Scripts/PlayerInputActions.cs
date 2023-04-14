@@ -39,6 +39,24 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""76092350-69b9-4b8d-9cda-1941ef642e54"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Value"",
+                    ""id"": ""648a98bc-426a-48a7-8cd8-4bce7ef362aa"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""DeltaMouse"",
                     ""type"": ""Value"",
                     ""id"": ""a63688b0-b6c7-4fe8-9597-0af1f913e5d0"",
@@ -200,6 +218,50 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""action"": ""FPS"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""jump"",
+                    ""id"": ""0e65cfaa-190a-429e-886c-08942d26e1dd"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f07373a0-f86f-4745-bc7b-d996ecf9437c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""sprint"",
+                    ""id"": ""bfb81168-dfdd-4285-aed0-bf52aa05ec8a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6a177978-b99b-46e5-88af-8bfc2e21b835"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -209,6 +271,8 @@ namespace RoigDylan_VukovicCharlie.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_DeltaMouse = m_Player.FindAction("DeltaMouse", throwIfNotFound: true);
             m_Player_FPS = m_Player.FindAction("FPS", throwIfNotFound: true);
         }
@@ -273,6 +337,8 @@ namespace RoigDylan_VukovicCharlie.Input
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Movement;
+        private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_DeltaMouse;
         private readonly InputAction m_Player_FPS;
         public struct PlayerActions
@@ -280,6 +346,8 @@ namespace RoigDylan_VukovicCharlie.Input
             private @PlayerInputActions m_Wrapper;
             public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Player_Movement;
+            public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @DeltaMouse => m_Wrapper.m_Player_DeltaMouse;
             public InputAction @FPS => m_Wrapper.m_Player_FPS;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -294,6 +362,12 @@ namespace RoigDylan_VukovicCharlie.Input
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
                 @DeltaMouse.started += instance.OnDeltaMouse;
                 @DeltaMouse.performed += instance.OnDeltaMouse;
                 @DeltaMouse.canceled += instance.OnDeltaMouse;
@@ -307,6 +381,12 @@ namespace RoigDylan_VukovicCharlie.Input
                 @Movement.started -= instance.OnMovement;
                 @Movement.performed -= instance.OnMovement;
                 @Movement.canceled -= instance.OnMovement;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
+                @Sprint.started -= instance.OnSprint;
+                @Sprint.performed -= instance.OnSprint;
+                @Sprint.canceled -= instance.OnSprint;
                 @DeltaMouse.started -= instance.OnDeltaMouse;
                 @DeltaMouse.performed -= instance.OnDeltaMouse;
                 @DeltaMouse.canceled -= instance.OnDeltaMouse;
@@ -333,6 +413,8 @@ namespace RoigDylan_VukovicCharlie.Input
         public interface IPlayerActions
         {
             void OnMovement(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
             void OnDeltaMouse(InputAction.CallbackContext context);
             void OnFPS(InputAction.CallbackContext context);
         }

@@ -15,8 +15,11 @@ namespace RoigDylan_VukovicCharlie.Lab6
 
         private InputAction moveActionRef;
         private InputAction deltaMouseActionRef;
+        private InputAction jumpRef;
+        private InputAction sprintRef;
         private float cameraSpeed = 1000f;
         private float playerSpeed = 5f;
+        private float sprintMultiplier = 1.5f;
         Vector2 mouseRotation; //the mouse movement that corresponds to the rotation
 
         private void Start()
@@ -24,12 +27,16 @@ namespace RoigDylan_VukovicCharlie.Lab6
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        public void Initialize(InputAction moveAction, InputAction deltaMouseAction)
+        public void Initialize(InputAction moveAction, InputAction deltaMouseAction, InputAction jumpAction, InputAction sprintAction)
         {
             moveAction.Enable();
             deltaMouseAction.Enable();
+            jumpAction.Enable();
+            sprintAction.Enable();
             moveActionRef = moveAction;
             deltaMouseActionRef = deltaMouseAction;
+            jumpRef = jumpAction;
+            sprintRef = sprintAction;
         }
 
         private void Update()
@@ -59,6 +66,14 @@ namespace RoigDylan_VukovicCharlie.Lab6
             movement += new Vector3(0, -movement.y, 0); //prevent the character from flying
 
             var objectStep = playerSpeed * Time.deltaTime;
+            //Debug.Log(jumpRef.ReadValue<Vector2>());
+            
+            if (sprintRef.ReadValue<Vector2>() == new Vector2(0.00f, 1.00f))
+            {
+                objectStep *= sprintMultiplier;
+                Debug.Log(sprintRef.ReadValue<Vector2>());
+            }
+
             Vector3 currentPosition = playerToMove.transform.position;
             playerToMove.transform.position = Vector3.MoveTowards(currentPosition, currentPosition + movement, objectStep); 
 
