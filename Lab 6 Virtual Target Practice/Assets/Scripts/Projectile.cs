@@ -7,14 +7,6 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 namespace RoigDylan_VukovicCharlie.Lab6
 {   
-    /*
-        current issues:
-        - bullet rotates when it is shot
-        - if player is walking forward and shoots they bump into the bullet and mess it up
-        - bullets don't shoot quite right when you look at walls / are close to wall?
-           - not really sure what's causing this, will need to test more
-    */
-
     public class Projectile : MonoBehaviour
     {
         // Start is called before the first frame update
@@ -26,7 +18,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         // Update is called once per frame
         void Update()
         {
-
+            //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         private void OnCollisionEnter(Collision collision)

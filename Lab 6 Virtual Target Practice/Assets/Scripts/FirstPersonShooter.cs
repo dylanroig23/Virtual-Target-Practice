@@ -48,7 +48,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
             RaycastHit hit; 
             if(Physics.Raycast(ray, out hit)){ // if our ray hits any collider
                 whereProjectileHit = hit.point;
+                Debug.Log("hit point" + hit.point);
             } else{
+                Debug.Log("else");
                 whereProjectileHit = ray.GetPoint(1000); // if nothing is hit, get the point 1000 out 
             }
 
@@ -56,8 +58,12 @@ namespace RoigDylan_VukovicCharlie.Lab6
         }
 
         void SpawnProjectile(Transform shotFrom){
-            var projectileInstance = Instantiate(projectilePrefab, shotFrom.position, Quaternion.identity) as GameObject; 
-            projectileInstance.GetComponent<Rigidbody>().velocity = (whereProjectileHit - shotFrom.position).normalized * projectileSpeed;
+            //var projectileInstance = Instantiate(projectilePrefab, shotFrom.position, Quaternion.identity) as GameObject; 
+            // projectileInstance.GetComponent<Rigidbody>().velocity = (whereProjectileHit - shotFrom.position).normalized * projectileSpeed;
+            var direction = (whereProjectileHit - shotFrom.position).normalized;
+            var rotation = Quaternion.LookRotation(direction);
+            var projectileInstance = Instantiate(projectilePrefab, shotFrom.position, rotation) as GameObject;
+            projectileInstance.GetComponent<Rigidbody>().velocity = direction * projectileSpeed;
         }
     }
 }
