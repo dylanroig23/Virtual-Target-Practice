@@ -21,10 +21,13 @@ namespace RoigDylan_VukovicCharlie.Lab6
         private float playerSpeed = 5f;
         private float sprintMultiplier = 1.5f;
         Vector2 mouseRotation; //the mouse movement that corresponds to the rotation
+        private Rigidbody characterRigidBody;
+        private MeshRenderer bossWallMeshRender;
 
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            characterRigidBody = GetComponent<Rigidbody>();
         }
 
         public void Initialize(InputAction moveAction, InputAction deltaMouseAction, InputAction jumpAction, InputAction sprintAction)
@@ -71,7 +74,6 @@ namespace RoigDylan_VukovicCharlie.Lab6
             if (sprintRef.ReadValue<Vector2>() == new Vector2(0.00f, 1.00f))
             {
                 objectStep *= sprintMultiplier;
-                Debug.Log(sprintRef.ReadValue<Vector2>());
             }
 
             Vector3 currentPosition = playerToMove.transform.position;
@@ -84,6 +86,26 @@ namespace RoigDylan_VukovicCharlie.Lab6
             {
                 Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
                 playerToMove.transform.rotation = Quaternion.RotateTowards(playerToMove.transform.rotation, targetRotation, Mathf.Infinity);
+            }
+        }
+
+        private void OnTriggerEnter(Collider collidedObject)
+        {
+            if (collidedObject.tag == "Boss Wall")
+            {
+                characterRigidBody.Sleep(); //let the character walk through the collider trigger
+                bossWallMeshRender = collidedObject.GetComponent<MeshRenderer>();
+                bossWallMeshRender.enabled = false;
+            }
+        }
+
+        private void OnTriggerExit(Collider collidedObject)
+        { 
+            characterRigidBody.WakeUp();
+            if (collidedObject.tag == "Boss Wall")
+            {
+                bossWallMeshRender.enabled = true;
+                collidedObject.isTrigger = false; //do not let the player walk back through
             }
         }
     }
