@@ -18,9 +18,6 @@ public class BossLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider collidedObject)
     {
-        if (collidedObject.tag == "Boss Wall")
-        {
-            Debug.Log("Entered Boss Room");
-        }
+  
     }
 }

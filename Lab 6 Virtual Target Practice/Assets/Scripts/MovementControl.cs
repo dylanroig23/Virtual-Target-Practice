@@ -12,6 +12,8 @@ namespace RoigDylan_VukovicCharlie.Lab6
     {
         [SerializeField] private GameObject playerToMove;
         [SerializeField] private Camera cameraFollower;
+        [SerializeField] private GameObject bossPrefab;
+
 
         private InputAction moveActionRef;
         private InputAction deltaMouseActionRef;
@@ -106,6 +108,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
             {
                 bossWallMeshRender.enabled = true;
                 collidedObject.isTrigger = false; //do not let the player walk back through
+                Quaternion rotation = Quaternion.Euler(0, 0, 0);
+                GameObject boss = Instantiate(bossPrefab, new Vector3(24.6f, 4.259254f, 18.18f), rotation) as GameObject;
+
             }
         }
     }
