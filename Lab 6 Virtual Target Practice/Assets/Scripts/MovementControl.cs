@@ -108,8 +108,8 @@ namespace RoigDylan_VukovicCharlie.Lab6
             {
                 bossWallMeshRender.enabled = true;
                 collidedObject.isTrigger = false; //do not let the player walk back through
-                Quaternion rotation = Quaternion.Euler(0, 0, 0);
-                GameObject boss = Instantiate(bossPrefab, new Vector3(24.6f, 4.259254f, 18.18f), rotation) as GameObject;
+                Quaternion rotation = Quaternion.Euler(0, -90, 0);
+                GameObject boss = Instantiate(bossPrefab, new Vector3(16f, 1.5f, 18.18f), rotation) as GameObject;
 
             }
         }

@@ -14,9 +14,12 @@ namespace RoigDylan_VukovicCharlie.Lab6{
         public Transform player;
         public Transform shotFrom;
 
+        private Rigidbody bossBody;
+
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform; // find the player 
+            bossBody = GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
@@ -26,6 +29,13 @@ namespace RoigDylan_VukovicCharlie.Lab6{
                 timeToShoot = Time.time + 1/fireRate;
                 ShootProjectile();
             }
+
+            Vector3 vectorBetween = player.position - transform.position;
+
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, vectorBetween, 5 * Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+            bossBody.AddForce(transform.forward * 500);                
+            
         }
 
         void ShootProjectile()
@@ -53,9 +63,14 @@ namespace RoigDylan_VukovicCharlie.Lab6{
 
         private void OnCollisionEnter(Collision collision)
         {
-            bossHealth -= 10;
-            if(bossHealth <= 0){
-                Destroy(gameObject);
+            Collider collider = collision.collider;
+            if (collider.tag == "Projectile")
+            {
+                bossHealth -= 10;
+                if (bossHealth <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7179237684944875071}
   m_Layer: 0
   m_Name: Pistolbullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d93d8d2372b429eac5d487da4c0657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  healthObject: {fileID: 0}
+  hit: 1
 --- !u!1 &2362233735291204562
 GameObject:
   m_ObjectHideFlags: 0
