@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - Target
   - Boss Wall
+  - EnemyShootPoint
   layers:
   - Default
   - TransparentFX

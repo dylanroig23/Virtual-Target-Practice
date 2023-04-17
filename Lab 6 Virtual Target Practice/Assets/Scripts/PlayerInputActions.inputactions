@@ -33,6 +33,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Reload",
+                    "type": "Value",
+                    "id": "f963566b-55e2-4172-9081-2ffbe5016dea",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "DeltaMouse",
                     "type": "Value",
                     "id": "a63688b0-b6c7-4fe8-9597-0af1f913e5d0",
@@ -236,6 +245,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "reload",
+                    "id": "7d3a012d-c542-4e98-b67b-3204c865ca21",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8e537c7a-0074-453f-aa8f-4de5d2f2a4ab",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

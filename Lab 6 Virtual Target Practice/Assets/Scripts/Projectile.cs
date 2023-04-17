@@ -10,12 +10,14 @@ namespace RoigDylan_VukovicCharlie.Lab6
     public class Projectile : MonoBehaviour
     {
         public GameObject playerObject;
+        public GameObject healthObject;
         public bool hit = true;
 
         // Start is called before the first frame update
         void Start()
         {
             playerObject = GameObject.Find("Player");
+            healthObject = GameObject.Find("HealthScript");
         } 
 
         // Update is called once per frame
@@ -26,8 +28,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
         private void OnCollisionEnter(Collision collision)
         {
             FirstPersonShooter fps = playerObject.GetComponent<FirstPersonShooter>();
-
-            if(collision.gameObject.tag != "Projectile" && collision.gameObject.tag != "Player"){
+            HealthScript hs = healthObject.GetComponent<HealthScript>();
+            
+            if(collision.gameObject.tag != "Projectile"){
                 Destroy(gameObject);
                 if(collision.gameObject.tag == "Target"){
                     if (fps != null && collision.gameObject != null && hit) // hit bool ensures multiple collisions on a single target dont happen
@@ -39,6 +42,10 @@ namespace RoigDylan_VukovicCharlie.Lab6
                     Destroy(collision.gameObject);
                     
                 }
+            }
+
+            if(collision.gameObject.tag == "Player"){
+                hs.DecreaseHealth(10);
             }
         }
     }
