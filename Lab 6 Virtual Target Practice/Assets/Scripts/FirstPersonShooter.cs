@@ -26,14 +26,6 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public Text score;
         public Text ammoText;
 
-        /* 
-         things to add:
-            - weapon switching?
-            - more levels?
-            - moving targets?
-            - jump functionality
-        */
-
         public void Initialize(InputAction shootAction, InputAction reloadAction)
         {
             shootAction.Enable();

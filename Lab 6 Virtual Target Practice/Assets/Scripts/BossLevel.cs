@@ -70,6 +70,7 @@ namespace RoigDylan_VukovicCharlie.Lab6{
                 if (bossHealth <= 0)
                 {
                     Destroy(gameObject);
+                    EventManager.OnGameWon();
                 }
             }
         }

@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 namespace RoigDylan_VukovicCharlie.Lab6
-{   
-    public class HealthScript : MonoBehaviour
+{  
+    public class GameOverScreen : MonoBehaviour
     {
-        public Image bar;
-        public float health = 100f;
         // Start is called before the first frame update
         void Start()
         {
@@ -20,12 +17,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
             
         }
 
-        public void DecreaseHealth(float amount){
-            health -= amount;
-            bar.fillAmount = health / 100f;
-            if(health <= 0){
-                EventManager.OnGameLost();
-            }
+        public void Setup(){
+            // activate screen
+            gameObject.SetActive(true);
         }
     }
 }
