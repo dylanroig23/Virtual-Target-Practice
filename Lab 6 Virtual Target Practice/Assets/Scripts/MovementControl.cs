@@ -26,6 +26,8 @@ namespace RoigDylan_VukovicCharlie.Lab6
         private Rigidbody characterRigidBody;
         private MeshRenderer bossWallMeshRender;
 
+        [SerializeField] private AudioSource enterBossSound;
+
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -110,6 +112,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
                 collidedObject.isTrigger = false; //do not let the player walk back through
                 Quaternion rotation = Quaternion.Euler(0, -90, 0);
                 GameObject boss = Instantiate(bossPrefab, new Vector3(16f, 1.5f, 18.18f), rotation) as GameObject;
+                enterBossSound.Play();
 
             }
         }

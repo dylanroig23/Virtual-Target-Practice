@@ -13,6 +13,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public GameObject healthObject;
         public bool hit = true;
         public bool shotFromPlayer = false;
+        //[SerializeField] private AudioSource targetHitSound; 
 
         // Start is called before the first frame update
         void Start()
@@ -41,6 +42,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
 
                     }
                     Destroy(collision.gameObject);
+                    //targetHitSound.Play();
                     
                 } else if(collision.gameObject.tag == "Player" && !shotFromPlayer){
                 hs.DecreaseHealth(10);

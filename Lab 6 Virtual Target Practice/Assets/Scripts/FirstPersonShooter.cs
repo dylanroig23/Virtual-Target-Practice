@@ -26,6 +26,10 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public Text score;
         public Text ammoText;
 
+        [SerializeField] private AudioSource shootingSound;
+        [SerializeField] private AudioSource reloadSound;
+
+
         public void Initialize(InputAction shootAction, InputAction reloadAction)
         {
             shootAction.Enable();
@@ -81,6 +85,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
             // projectileInstance.GetComponent<Rigidbody>().velocity = (whereProjectileHit - shotFrom.position).normalized * projectileSpeed;
             var direction = (whereProjectileHit - shotFrom.position).normalized;
             var rotation = Quaternion.LookRotation(direction);
+            shootingSound.Play();
             var projectileInstance = Instantiate(projectilePrefab, shotFrom.position, rotation) as GameObject;
             projectileInstance.GetComponent<Projectile>().shotFromPlayer = true;
             projectileInstance.GetComponent<Rigidbody>().velocity = direction * projectileSpeed;
@@ -99,6 +104,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         {
             ammoText.text = "--"; // reloading
             yield return new WaitForSeconds(1.5f); // wait for 1.5 seconds
+            reloadSound.Play();
             ammo = 5; // reset ammo
             ammoText.text = ammo.ToString();
         }
