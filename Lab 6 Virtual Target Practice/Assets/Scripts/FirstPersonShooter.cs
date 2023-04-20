@@ -82,7 +82,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
             var direction = (whereProjectileHit - shotFrom.position).normalized;
             var rotation = Quaternion.LookRotation(direction);
             var projectileInstance = Instantiate(projectilePrefab, shotFrom.position, rotation) as GameObject;
+            projectileInstance.GetComponent<Projectile>().shotFromPlayer = true;
             projectileInstance.GetComponent<Rigidbody>().velocity = direction * projectileSpeed;
+
         }
 
         void AmmunitionUpdate(){
