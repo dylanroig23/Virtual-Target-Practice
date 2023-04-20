@@ -8,10 +8,12 @@ namespace RoigDylan_VukovicCharlie.Lab6
     {
         public GameOverScreen gameOverScreen;
         public YouWinScreen youWinScreen;
+        public Rifle rifle;
         public void OnEnable(){
             // subscribe
             EventManager.gameLost += OnGameLost;
             EventManager.gameWon += OnGameWon;
+            EventManager.weaponSwitch += OnWeaponSwitch;
         }
 
         public void OnDisable(){
@@ -23,17 +25,20 @@ namespace RoigDylan_VukovicCharlie.Lab6
             gameOverScreen.Setup();
             // restart the scene
             StartCoroutine(delayEnd());
-
-            //Debug.Log("End game");
         }
 
         public void OnGameWon(){
             youWinScreen.Setup();
             // restart the scene
             StartCoroutine(delayEnd());
-
-            //Debug.Log("End game");
         }
+
+        public void OnWeaponSwitch(){
+            rifle.Toggle();
+            // disable weapon
+        }
+
+
         IEnumerator delayEnd()
         {
             // wait for 5 seconds

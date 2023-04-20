@@ -12,5 +12,8 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public static event UnityAction gameWon;
         public static void OnGameWon() => gameWon?.Invoke();
 
+        public static event UnityAction weaponSwitch;
+        public static void OnWeaponSwitch() => weaponSwitch?.Invoke();
+
     }
 }
