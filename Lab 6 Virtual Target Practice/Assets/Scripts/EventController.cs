@@ -8,10 +8,10 @@ namespace RoigDylan_VukovicCharlie.Lab6
     {
         public GameOverScreen gameOverScreen;
         public YouWinScreen youWinScreen;
-       public void OnEnable(){
-        // subscribe
-		EventManager.gameLost += OnGameLost;
-        EventManager.gameWon += OnGameWon;
+        public void OnEnable(){
+            // subscribe
+            EventManager.gameLost += OnGameLost;
+            EventManager.gameWon += OnGameWon;
         }
 
         public void OnDisable(){

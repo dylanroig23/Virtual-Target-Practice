@@ -30,16 +30,8 @@ namespace RoigDylan_VukovicCharlie.Lab6
         {
             FirstPersonShooter fps = playerObject.GetComponent<FirstPersonShooter>();
             HealthScript hs = healthObject.GetComponent<HealthScript>();
-            Debug.Log(collision.gameObject.name);
-            Debug.Log(gameObject.name);
-
-            // when shoot self:
-            // player, then pistol bullet clone
-
-
 
             if(collision.gameObject.tag != "Projectile"){
-                Debug.Log(shotFromPlayer);
                 Destroy(gameObject);
                 if(collision.gameObject.tag == "Target"){
                     if (fps != null && collision.gameObject != null && hit) // hit bool ensures multiple collisions on a single target dont happen

@@ -10,6 +10,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
     {
         [SerializeField] private MovementControl movementController;
         [SerializeField] private FirstPersonShooter firstPersonShooter;
+        [SerializeField] private StartScript startScript;
         private PlayerInputActions inputScheme;
 
         private void Awake()
@@ -17,6 +18,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
             inputScheme = new PlayerInputActions();
             movementController.Initialize(inputScheme.Player.Movement, inputScheme.Player.DeltaMouse, inputScheme.Player.Jump,inputScheme.Player.Sprint);
             firstPersonShooter.Initialize(inputScheme.Player.FPS, inputScheme.Player.Reload);
+            startScript.Initialize(inputScheme.Player.Movement);
         }
 
         private void OnEnable()
