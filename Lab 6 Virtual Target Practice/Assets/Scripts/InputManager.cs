@@ -17,7 +17,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         {
             inputScheme = new PlayerInputActions();
             movementController.Initialize(inputScheme.Player.Movement, inputScheme.Player.DeltaMouse, inputScheme.Player.Jump,inputScheme.Player.Sprint);
-            firstPersonShooter.Initialize(inputScheme.Player.FPS, inputScheme.Player.Reload);
+            firstPersonShooter.Initialize(inputScheme.Player.FPS, inputScheme.Player.Reload,inputScheme.Player.Switch);
             startScript.Initialize(inputScheme.Player.Movement);
         }
 

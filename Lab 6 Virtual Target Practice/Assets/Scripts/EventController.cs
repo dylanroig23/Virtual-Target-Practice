@@ -9,6 +9,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public GameOverScreen gameOverScreen;
         public YouWinScreen youWinScreen;
         public Rifle rifle;
+        public Pistol pistol;
         public void OnEnable(){
             // subscribe
             EventManager.gameLost += OnGameLost;
@@ -35,6 +36,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
 
         public void OnWeaponSwitch(){
             rifle.Toggle();
+            pistol.Toggle();
             // disable weapon
         }
 

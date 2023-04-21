@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RoigDylan_VukovicCharlie.Lab6
 {  
-    public class Rifle : MonoBehaviour
+    public class Pistol : MonoBehaviour
     {
         public bool b;
         private float timeToSwitch;
@@ -21,11 +21,11 @@ namespace RoigDylan_VukovicCharlie.Lab6
             }
 
             public void Toggle(){
-               // if(Time.time >= timeToSwitch){
-                   // timeToSwitch = Time.time + 1.3f;
+                //if(Time.time >= timeToSwitch){
+               //     timeToSwitch = Time.time + 1.3f;
                     b = !b;
                     gameObject.SetActive(b);
-                //}
+               // }
             }
     }
 }

@@ -13,6 +13,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
     {
         private InputAction shootActionRef;
         private InputAction reloadActionRef;
+        private InputAction switchActionRef;
         public Camera camera;
         public GameObject projectilePrefab;
 
@@ -20,9 +21,12 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public Transform shotFrom;
         public float projectileSpeed = 30f;
         private float timeToShoot;
+        private float timeToSwitch;
         public float fireRate = 1f;
         public int numOfTargetsHit;
-        public int ammo;
+        public int rifleAmmo;
+        public int pistolAmmo;
+        public bool isRifle = true;
         public Text score;
         public Text ammoText;
 
@@ -30,18 +34,21 @@ namespace RoigDylan_VukovicCharlie.Lab6
         [SerializeField] private AudioSource reloadSound;
 
 
-        public void Initialize(InputAction shootAction, InputAction reloadAction)
+        public void Initialize(InputAction shootAction, InputAction reloadAction, InputAction switchAction)
         {
             shootAction.Enable();
             shootActionRef = shootAction;
             reloadAction.Enable();
             reloadActionRef = reloadAction;
+            switchAction.Enable();
+            switchActionRef = switchAction;
         }
         // Start is called before the first frame update
         void Start()
         {
-            ammo = 5;
-            ammoText.text = ammo.ToString();
+            rifleAmmo = 10;
+            pistolAmmo = 5;
+            ammoText.text = rifleAmmo.ToString();
         }
 
         // Update is called once per frame
@@ -49,15 +56,33 @@ namespace RoigDylan_VukovicCharlie.Lab6
         {
             Vector2 shoot = shootActionRef.ReadValue<Vector2>();
             Vector2 reload = reloadActionRef.ReadValue<Vector2>();
+            float switchWeapon = switchActionRef.ReadValue<float>();
             if(shoot == new Vector2(0.00f, 1.00f) && Time.time >= timeToShoot){
                 timeToShoot = Time.time + 1/fireRate;
-                if(ammo > 0){
-                    ShootProjectile();
+                if(isRifle){
+                    if(rifleAmmo > 0){
+                        ShootProjectile();
+                    }
+                }else {
+                    if(pistolAmmo > 0){
+                        ShootProjectile();
+                    }
                 }
             }
 
             if(reload == new Vector2(0.00f, 1.00f)){
                 StartCoroutine(Reload());
+            }
+
+            if(switchWeapon == 1 && Time.time >= timeToSwitch){
+                timeToSwitch = Time.time + 1.3f;
+                isRifle = !isRifle;
+                EventManager.OnWeaponSwitch();
+                if(isRifle){
+                    ammoText.text = rifleAmmo.ToString();
+                }else {
+                    ammoText.text = pistolAmmo.ToString();
+                }
             }
 
             score.text = numOfTargetsHit.ToString();
@@ -93,9 +118,15 @@ namespace RoigDylan_VukovicCharlie.Lab6
         }
 
         void AmmunitionUpdate(){
-            ammo--;
-            ammoText.text = ammo.ToString();
-            if(ammo == 0){
+            if(isRifle){
+                rifleAmmo--;
+                ammoText.text = rifleAmmo.ToString();
+            }else {
+                pistolAmmo--;
+                ammoText.text = pistolAmmo.ToString();
+            }
+            
+            if(rifleAmmo == 0 || pistolAmmo == 0){
                 StartCoroutine(Reload());
             }
         }
@@ -105,8 +136,14 @@ namespace RoigDylan_VukovicCharlie.Lab6
             ammoText.text = "--"; // reloading
             yield return new WaitForSeconds(1.5f); // wait for 1.5 seconds
             reloadSound.Play();
-            ammo = 5; // reset ammo
-            ammoText.text = ammo.ToString();
+            if(isRifle){
+                rifleAmmo = 10;
+                ammoText.text = rifleAmmo.ToString();
+            }else {
+                pistolAmmo = 5;
+                ammoText.text = pistolAmmo.ToString();
+            }
+            
         }
     }
 }

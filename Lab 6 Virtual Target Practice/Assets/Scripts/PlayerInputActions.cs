@@ -48,6 +48,15 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""680cf232-cee4-49e7-a38a-90c004ccb0a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""648a98bc-426a-48a7-8cd8-4bce7ef362aa"",
@@ -293,6 +302,39 @@ namespace RoigDylan_VukovicCharlie.Input
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""switch"",
+                    ""id"": ""10098e0f-d6dc-444e-88da-e02a30e9519b"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Modifier"",
+                    ""id"": ""333d2bd2-b957-4f89-a1e4-02e6f606437b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button"",
+                    ""id"": ""1e8e7907-d270-431a-94c2-4e752fd82bfe"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -303,6 +345,7 @@ namespace RoigDylan_VukovicCharlie.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
             m_Player_DeltaMouse = m_Player.FindAction("DeltaMouse", throwIfNotFound: true);
@@ -370,6 +413,7 @@ namespace RoigDylan_VukovicCharlie.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Movement;
         private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_Switch;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Reload;
         private readonly InputAction m_Player_DeltaMouse;
@@ -380,6 +424,7 @@ namespace RoigDylan_VukovicCharlie.Input
             public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Player_Movement;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @Switch => m_Wrapper.m_Player_Switch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Reload => m_Wrapper.m_Player_Reload;
             public InputAction @DeltaMouse => m_Wrapper.m_Player_DeltaMouse;
@@ -399,6 +444,9 @@ namespace RoigDylan_VukovicCharlie.Input
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Switch.started += instance.OnSwitch;
+                @Switch.performed += instance.OnSwitch;
+                @Switch.canceled += instance.OnSwitch;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
@@ -421,6 +469,9 @@ namespace RoigDylan_VukovicCharlie.Input
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @Switch.started -= instance.OnSwitch;
+                @Switch.performed -= instance.OnSwitch;
+                @Switch.canceled -= instance.OnSwitch;
                 @Sprint.started -= instance.OnSprint;
                 @Sprint.performed -= instance.OnSprint;
                 @Sprint.canceled -= instance.OnSprint;
@@ -454,6 +505,7 @@ namespace RoigDylan_VukovicCharlie.Input
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnSwitch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnDeltaMouse(InputAction.CallbackContext context);
