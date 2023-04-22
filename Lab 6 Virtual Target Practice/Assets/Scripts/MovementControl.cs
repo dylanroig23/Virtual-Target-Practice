@@ -80,6 +80,12 @@ namespace RoigDylan_VukovicCharlie.Lab6
                 objectStep *= sprintMultiplier;
             }
 
+            if (jumpRef.ReadValue<Vector2>() == new Vector2(0.00f, 1.00f) && transform.position.y < 1.48f)
+            {
+                Debug.Log("Jump Hit");
+                characterRigidBody.AddForce(Vector3.up * 25);
+            }
+
             Vector3 currentPosition = playerToMove.transform.position;
             playerToMove.transform.position = Vector3.MoveTowards(currentPosition, currentPosition + movement, objectStep); 
 
