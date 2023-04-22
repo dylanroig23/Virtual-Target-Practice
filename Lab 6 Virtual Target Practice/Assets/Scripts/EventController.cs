@@ -30,6 +30,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
 
         public void OnGameWon(){
             youWinScreen.Setup();
+            TimerScript.end = true;
             // restart the scene
             StartCoroutine(delayEnd());
         }

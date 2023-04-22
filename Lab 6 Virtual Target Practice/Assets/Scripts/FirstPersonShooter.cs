@@ -27,7 +27,9 @@ namespace RoigDylan_VukovicCharlie.Lab6
         public int rifleAmmo;
         public int pistolAmmo;
         public bool isRifle = true;
-        public Text score;
+        public Text score1;
+        public Text score2;
+        public Text score3;
         public Text ammoText;
 
         [SerializeField] private AudioSource shootingSound;
@@ -84,8 +86,11 @@ namespace RoigDylan_VukovicCharlie.Lab6
                     ammoText.text = pistolAmmo.ToString();
                 }
             }
-
-            score.text = numOfTargetsHit.ToString();
+            var score = numOfTargetsHit.ToString();
+            score1.text = score;
+            score2.text = score;
+            score3.text = score;
+            
         }
 
         void ShootProjectile()
