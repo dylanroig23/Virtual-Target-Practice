@@ -4,23 +4,15 @@ using UnityEngine;
 
 namespace RoigDylan_VukovicCharlie.Lab6
 {  
+// Written by Charlie Vukovic
+/*
+ * Script used to deactivate the start screen
+ */
     public class StartScreen : MonoBehaviour
     {
-        // Start is called before the first frame update
-            void Start()
-            {
-                
-            }
-
-            // Update is called once per frame
-            void Update()
-            {
-                
-            }
-
-            public void Setup(){
-                // activate screen
-                gameObject.SetActive(false);
-            }
+        public void Setup(){
+            // activate screen
+            gameObject.SetActive(false);
+        }
     }
 }

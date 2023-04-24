@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 namespace RoigDylan_VukovicCharlie.Lab6
 {   
+// Written by Dylan Roig
+/*
+ *  Script attached to the targets to handle their behavior
+ */
     public class Target : MonoBehaviour
     {
         private float distanceToBob = 0.5f;
@@ -22,14 +26,11 @@ namespace RoigDylan_VukovicCharlie.Lab6
         // Update is called once per frame
         void Update()
         {
+            // control the bobbing and rotating of the targets
             Vector3 distanceToMove = new Vector3(0, Mathf.Sin(Time.time * bobbingSpeed) * distanceToBob, 0);
             transform.position = startingPosition + distanceToMove;
             transform.Rotate(0, 50 * Time.deltaTime, 0);
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-
-        }
     }
 }

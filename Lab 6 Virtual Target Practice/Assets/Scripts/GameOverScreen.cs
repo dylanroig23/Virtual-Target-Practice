@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RoigDylan_VukovicCharlie.Lab6
 {  
+// Written by Charlie Vukovic
+/*
+ *  Script used by the event system to activate the loss screen
+ */
     public class GameOverScreen : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
         public void Setup(){
             // activate screen
             gameObject.SetActive(true);

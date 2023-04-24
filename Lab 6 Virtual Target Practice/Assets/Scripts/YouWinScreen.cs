@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RoigDylan_VukovicCharlie.Lab6
 {  
+// Written by Charlie Vukovic
+/*
+ * Script used by the event system to activate the win screen
+ */
     public class YouWinScreen : MonoBehaviour
     {
         public void Setup(){

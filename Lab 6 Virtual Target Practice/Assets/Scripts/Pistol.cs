@@ -4,28 +4,19 @@ using UnityEngine;
 
 namespace RoigDylan_VukovicCharlie.Lab6
 {  
+// Written by Charlie Vukovic
+/*
+ * class for handling the behavior of making pistol disappear and reappear 
+ *  when the weapon switch button is pressed
+ */
     public class Pistol : MonoBehaviour
     {
         public bool b;
         private float timeToSwitch;
-        // Start is called before the first frame update
-            void Start()
-            {
-                b = true;
-            }
-
-            // Update is called once per frame
-            void Update()
-            {
-                
-            }
-
-            public void Toggle(){
-                //if(Time.time >= timeToSwitch){
-               //     timeToSwitch = Time.time + 1.3f;
-                    b = !b;
-                    gameObject.SetActive(b);
-               // }
-            }
+        public void Toggle(){
+            // switch the boolean and set the active status to that 
+            b = !b;
+            gameObject.SetActive(b);
+        }
     }
 }

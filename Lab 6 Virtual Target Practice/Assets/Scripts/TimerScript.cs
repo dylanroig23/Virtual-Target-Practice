@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace RoigDylan_VukovicCharlie.Lab6
 {   
+// Written by Charlie Vukovic
+/*
+ * scripts to handle the conversion and display of the time in the overlay
+ */
     public class TimerScript : MonoBehaviour
     {
         public Text timerText;
@@ -19,11 +23,13 @@ namespace RoigDylan_VukovicCharlie.Lab6
         // Update is called once per frame
         void Update()
         {
+            // convert to string
             float time = Time.time - startTime;
             string min = ((int) time / 60).ToString();
             string sec = (time % 60).ToString("f2");
             timerText.text = min+":"+sec;
 
+            // when the end is reached, display it on the end screen
             if(end){
                 finalTime.text = min+":"+sec;
                 end = !end;
