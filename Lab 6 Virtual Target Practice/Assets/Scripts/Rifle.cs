@@ -11,9 +11,13 @@ namespace RoigDylan_VukovicCharlie.Lab6
  */
     public class Rifle : MonoBehaviour
     {
-        public bool b;
+        public bool b = true;
         private float timeToSwitch;
         // Start is called before the first frame update
+        void Start()
+        {
+            b = true;
+        }
         public void Toggle(){
             b = !b;
             gameObject.SetActive(b);

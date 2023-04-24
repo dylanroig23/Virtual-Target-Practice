@@ -11,8 +11,13 @@ namespace RoigDylan_VukovicCharlie.Lab6
  */
     public class Pistol : MonoBehaviour
     {
-        public bool b;
+        public bool b = true;
         private float timeToSwitch;
+
+        void Start()
+        {
+            b = true;
+        }
         public void Toggle(){
             // switch the boolean and set the active status to that 
             b = !b;
