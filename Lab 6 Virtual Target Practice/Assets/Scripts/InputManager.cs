@@ -9,7 +9,7 @@ namespace RoigDylan_VukovicCharlie.Lab6
 // Written by Charlie Vukovic and Dylan Roig
 // specific blocks of code are commented to indicate who did what
 /*
- *
+ * initializes and passes the correct information to scripts that require inputAction maps
  */
     public class InputManager : MonoBehaviour
     {
