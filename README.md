@@ -41,6 +41,7 @@ package and open it in a Unity 3D project.
 
 ## Video of Game Description
 
+Click the image below to see our video demostration of Virtual Target Practice!
 <p align="center">
   <a href="https://youtu.be/0m5UtiO7Pz4">
     <img src="GameEnvironment.PNG" alt="Game Video Link">
