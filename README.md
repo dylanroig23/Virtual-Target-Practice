@@ -1,10 +1,10 @@
 
 # Welcome to Virtual Target Practice!
 
-##### Developed By: Charlie Vukovic[https://github.com/cavukovic] and Dylan Roig[https://github.com/dylanroig23]
+##### Developed By: [Charlie Vukovic](https://github.com/cavukovic) and [Dylan Roig](https://github.com/dylanroig23)
 
-Virtual target practice is an interactive first person shooter that offers a player the chance to play against the clock as the seek  
-targets that are placed throughout an apartment themed map. BUT BEWARE! There is a boss character that will be waiting for you in the  
+Virtual target practice is an interactive first person shooter that offers a player the chance to play against the clock as the seek 
+targets that are placed throughout an apartment themed map. BUT BEWARE! There is a boss character that will be waiting for you in the 
 last room of the map who must be defeated in order to win the game.
 
 ## Software Used
@@ -40,6 +40,7 @@ coded in C# using Unity's built in libraries.
 
 ## Video of Game Description
 Click the image below to be redirected to our video demostration!
+[![Game Video Link](GameEnvironment.PNG)](https://youtu.be/0m5UtiO7Pz4)
 
 
 
