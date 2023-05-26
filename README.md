@@ -40,10 +40,15 @@ package and open it in a Unity 3D project.
 - Limited Ammo
 
 ## Video of Game Description
-Click the image below to be redirected to our video demostration!
-[![Game Video Link](GameEnvironment.PNG)](https://youtu.be/0m5UtiO7Pz4)
+
+<p align="center">
+  <a href="https://youtu.be/0m5UtiO7Pz4">
+    <img src="GameEnvironment.PNG" alt="Game Video Link">
+  </a>
+</p>
 
 #### Documentation and Prefabs Used
+
 - [Raycast](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html)
 - [MoveTowards](https://docs.unity3d.com/ScriptReference/Vector3.MoveTowards.html)
 - [AddForce](https://docs.unity3d.com/ScriptReference/Rigidbody.AddForce.html)
